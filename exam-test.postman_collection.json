@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "e4890cf2-9bb1-4dc6-8891-8b7c8060655b",
+		"name": "exam-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6101933"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/search?price_from=500000&price_to=550000&name=Xavier&price=513268&bedrooms=4&bathrooms=2&storeys=1&garages=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/search?price_from=500000&price_to=550000&name=Xavier&price=513268&bedrooms=4&bathrooms=2&storeys=1&garages=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "price_from",
+							"value": "500000"
+						},
+						{
+							"key": "price_to",
+							"value": "550000"
+						},
+						{
+							"key": "name",
+							"value": "Xavier"
+						},
+						{
+							"key": "price",
+							"value": "513268"
+						},
+						{
+							"key": "bedrooms",
+							"value": "4"
+						},
+						{
+							"key": "bathrooms",
+							"value": "2"
+						},
+						{
+							"key": "storeys",
+							"value": "1"
+						},
+						{
+							"key": "garages",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
