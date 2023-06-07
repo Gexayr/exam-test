@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',  [App\Http\Controllers\HouseController::class, 'index']);
+Route::get('/search',  [App\Http\Controllers\HouseController::class, 'search']);
 

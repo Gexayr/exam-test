@@ -33,7 +33,6 @@ class HousSeeder extends Seeder
                     }
                     DB::table('houses')->insert($array);
 
-                    print_r($data);
                 }
 
                 fclose($handle);

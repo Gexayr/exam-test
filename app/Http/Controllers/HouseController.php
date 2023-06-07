@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class HouseController extends Controller
@@ -18,50 +19,41 @@ class HouseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      */
-    public function create()
+    public function search(Request $request)
     {
-        //
-    }
+        $query = House::query();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if (!is_null($request->name)) {
+            $query->where('name', 'Like', '%'.$request->name.'%');
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(House $house)
-    {
-        //
-    }
+        if (!is_null($request->bedrooms)) {
+            $query->where('bedrooms', $request->bedrooms);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(House $house)
-    {
-        //
-    }
+        if (!is_null($request->bathrooms)) {
+            $query->where('bathrooms', $request->bathrooms);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, House $house)
-    {
-        //
-    }
+        if (!is_null($request->storeys)) {
+            $query->where('storeys', $request->storeys);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(House $house)
-    {
-        //
+        if (!is_null($request->garages)) {
+            $query->where('garages', $request->garages);
+        }
+
+        if (!is_null($request->price_from)) {
+            $query->where('price', '>=', $request->price_from);
+        }
+        if (!is_null($request->price_to)) {
+            $query->where('price', '<=', $request->price_to);
+        }
+
+        $data = $query->get();
+
+        return new JsonResponse($data);
     }
 }

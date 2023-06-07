@@ -1,10 +1,24 @@
 $(document).ready(function () {
 
-    const frm = $('#my_form');
+    var tableBody = $('#table-content');
+
+    // Show loading spinner
+    function showLoadingSpinner() {
+        $('#loading').show();
+    }
+
+    // Hide loading spinner
+    function hideLoadingSpinner() {
+        $('#loading').hide();
+    }
+
+    // Load data
+    const frm = $('#myForm');
     frm.submit(function (e) {
         e.preventDefault(e);
 
-        let formData = new FormData(this);
+        showLoadingSpinner();
+        const formData = $(this).serialize();
 
         $.ajax({
             async: true,
@@ -14,13 +28,34 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             contentType: false,
-            success: function (data) {
-                console.log("success")
+            dataType: 'json',
+            success: function(response) {
+
+                // Clear existing table rows
+                tableBody.empty();
+
+                // Add data rows to the table
+                response.forEach(function(item) {
+                    var row = `
+            <tr>
+              <td>${item.id}</td>
+              <td>${item.name}</td>
+              <td>${item.price}</td>
+              <td>${item.bedrooms}</td>
+              <td>${item.bathrooms}</td>
+              <td>${item.storeys}</td>
+              <td>${item.garages}</td>
+            </tr>
+          `;
+                    tableBody.append(row);
+                });
             },
-            error: function(request, status, error) {
-                console.log("error")
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+            },
+            complete: function() {
+                hideLoadingSpinner();
             }
         });
-    });
-
+    })
 });
