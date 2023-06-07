@@ -10,7 +10,7 @@
 
                     <div class="card-body">
 
-                        <form>
+                        <form id="my_form" method="GET" action="search">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Name">
